@@ -4,7 +4,7 @@ Reads key from stdin.
 
 ### Try
 
-```deno run --unstable https://deno.land/x/keypress@0.0.8/readKeypress_test.ts```
+```deno run --unstable https://deno.land/x/keypress2@0.1.0/readKeypress_test.ts```
 
 ```ts
 // CTRL + C keypress
@@ -25,7 +25,7 @@ const keypress: Keypress = {
 Read from Deno.stdin by default:
 
 ```ts
-import { readKeypress } from "https://deno.land/x/keypress@0.0.8/mod.ts";
+import { readKeypress } from "https://deno.land/x/keypress2@0.1.0/mod.ts";
 
 for await (const keypress of readKeypress()) {
     console.log(keypress);
@@ -36,20 +36,5 @@ for await (const keypress of readKeypress()) {
 }
 ```
 
-Read from TTY:
-
-```ts
-import { readKeypress } from "https://deno.land/x/keypress@0.0.8/mod.ts";
-
-const tty = await Deno.open("/dev/ttys003");
-
-for await (const keypress of readKeypress(tty)) {
-    console.log(keypress);
-
-    if (keypress.ctrlKey && keypress.key === 'c') {
-        Deno.exit(0);
-    }
-}
-```
 
 Big thanks to Nathan Rajlich and his https://github.com/TooTallNate/keypress, whitch code for key decode I took to this library.
